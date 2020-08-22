@@ -1,23 +1,41 @@
-// Require/import the HTTP module
-var http = require("http");
+// ==============================================================================
+// DEPENDENCIES
+// Series of npm packages that we will use to give our server useful functionality
+// ==============================================================================
 
-// Define a port to listen for incoming requests
-var PORT = 8080;
+var express = require("express");
 
-// Create a generic function to handle requests and responses
-function handleRequest(req, res) {
+// ==============================================================================
+// EXPRESS CONFIGURATION
+// This sets up the basic properties for our express server
+// ==============================================================================
 
-  // Send the below string to the client when the user visits the PORT URL
-  res.end("It Works!! Path Hit: " + req.url);
-}
+// Tells node that we are creating an "express" server
+var app = express();
 
-// Use the Node HTTP package to create our server.
-// Pass the handleRequest function to empower it with functionality.
-var server = http.createServer(handleRequest);
+// Sets an initial port. We"ll use this later in our listener
+var PORT = process.env.PORT || 8080;
 
-// Start our server so that it can begin listening to client requests.
-server.listen(PORT, function() {
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// app.use('/static', express.static('public'));
 
-  // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
+
+// ================================================================================
+// ROUTER
+// The below points our server to a series of "route" files.
+// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
+// ================================================================================
+
+// require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
+
+// =============================================================================
+// LISTENER
+// The below code effectively "starts" our server
+// =============================================================================
+
+app.listen(PORT, function() {
+  console.log("App listening on PORT: " + PORT);
 });
