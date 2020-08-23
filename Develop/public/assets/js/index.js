@@ -1,3 +1,5 @@
+console.log("Did I get it right yet?");
+
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
@@ -15,10 +17,12 @@ const getNotes = () => {
   });
 };
 
+
 // A function for saving a note to the db
 const saveNote = (note) => {
   return $.ajax({
     url: "/api/notes",
+
     data: note,
     method: "POST",
   });
@@ -137,6 +141,7 @@ const renderNoteList = (notes) => {
 
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => {
+  console.log("getAndRenderNotes")
   return getNotes().then(renderNoteList);
 };
 

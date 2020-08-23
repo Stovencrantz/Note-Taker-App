@@ -5,7 +5,7 @@ var dbData = require("../db.json");
 module.exports = function(app) {
 
     //displays the note titles and notes contained in our db.json file as JSON data
-    app.get("/api/db", function(req, res){
+    app.get("/api/notes", function(req, res){
         res.json(dbData);
     })
 }
