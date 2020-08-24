@@ -13,7 +13,7 @@ let activeNote = {};
 const getNotes = () => {
   return $.ajax({
     url: "/api/notes",
-    method: "GET",
+    method: "GET"
   });
 };
 
@@ -22,9 +22,8 @@ const getNotes = () => {
 const saveNote = (note) => {
   return $.ajax({
     url: "/api/notes",
-
     data: note,
-    method: "POST",
+    method: "POST"
   });
 };
 
@@ -32,14 +31,16 @@ const saveNote = (note) => {
 const deleteNote = (id) => {
   return $.ajax({
     url: "api/notes/" + id,
-    method: "DELETE",
+    method: "DELETE"
   });
 };
 
 // If there is an activeNote, display it, otherwise render empty inputs
 const renderActiveNote = () => {
   $saveNoteBtn.hide();
-
+//========================================================
+// Create an id in our json object to hold our specific note
+//========================================================
   if (activeNote.id) {
     $noteTitle.attr("readonly", true);
     $noteText.attr("readonly", true);
@@ -86,6 +87,7 @@ const handleNoteDelete = function (event) {
 // Sets the activeNote and displays it
 const handleNoteView = function () {
   activeNote = $(this).data();
+  console.log("activeNote: ", activeNote);
   renderActiveNote();
 };
 
@@ -106,7 +108,10 @@ const handleRenderSaveBtn = function () {
 };
 
 // Render's the list of note titles
+//`notes` stores our json object grabbed in our getNotes() declaration
 const renderNoteList = (notes) => {
+  console.log("Here are our notes: ", notes);
+
   $noteList.empty();
 
   const noteListItems = [];
@@ -116,6 +121,7 @@ const renderNoteList = (notes) => {
   const create$li = (text, withDeleteButton = true) => {
     const $li = $("<li class='list-group-item'>");
     const $span = $("<span>").text(text);
+    
     $li.append($span);
 
     if (withDeleteButton) {
@@ -126,7 +132,7 @@ const renderNoteList = (notes) => {
     }
     return $li;
   };
-
+  console.log("# of notes: ", notes.length);
   if (notes.length === 0) {
     noteListItems.push(create$li("No saved Notes", false));
   }
@@ -136,12 +142,13 @@ const renderNoteList = (notes) => {
     noteListItems.push($li);
   });
 
+  console.log("noteListItems: ", noteListItems);
   $noteList.append(noteListItems);
 };
 
 // Gets notes from the db and renders them to the sidebar
+//We use renderNoteList() as our callback function
 const getAndRenderNotes = () => {
-  console.log("getAndRenderNotes")
   return getNotes().then(renderNoteList);
 };
 
