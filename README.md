@@ -34,4 +34,4 @@
 - [GitHub Profile](https://github.com/Stovencrantz)
 For additional questions please reach out to my email at: sknapp143@gmail.com.
     Here is a video on how to work the application.
-- [Video](https://drive.google.com/file/d/1S7Ghxkw8DkgHQ8dZb39vRoqImev4Hydz/view)
+
