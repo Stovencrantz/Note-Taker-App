@@ -17,7 +17,7 @@ var app = express();
 // Sets an initial port. We"ll use this later in our listener
 var PORT = process.env.PORT || 8080;
 
-app.use(express.static("../public"));
+app.use(express.static("./Develop/public"));
 
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -30,8 +30,8 @@ app.use(express.json());
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 // ================================================================================
 
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+require("./Develop/backend/routes/apiRoutes")(app);
+require("./Develop/backend/routes/htmlRoutes")(app);
 
 // =============================================================================
 // LISTENER
