@@ -27,6 +27,16 @@ The user will need to install the 'fs' and 'express' dependencies. When the user
 - JavaScript
 - Express
 
+## Screenshots:
+Landing Page
+![Landing Page](images/mainPage.png)
+
+Notes List
+![Note List](images/notesList.png)
+
+Note Details
+![Individual Note](images/individualNote.png)
+
 ## Usage:
 
 To create a note, enter a note title, and text in the note body. Once you are satisfied with your note, click the save button in the top right to save our note. The user can view past notes by selecting a specific note on the sidebar. If the user wants to delete a specific note, they just need to select the note they want to remove, and then click the red garbage can.
